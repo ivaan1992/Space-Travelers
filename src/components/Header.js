@@ -4,10 +4,20 @@ import { Link } from 'react-router-dom';
 const Header = () => (
   <header>
     <nav>
-      <p>Image navbar </p>
-    </nav>
-    <nav>
-        <p>Links nav</p>
+      <ul className="logo">
+        <li>
+          <h1 className='header-title'>Space Travelers' Hub</h1>
+        </li> 
+        <li>
+          <Link to="/Missions">Missions</Link>
+        </li>
+        <li>
+          <Link to="/Profile">Profile</Link>
+        </li>
+        <li>
+          <Link to="/">Rockets</Link>
+        </li>
+      </ul>
     </nav>
   </header>
 );
