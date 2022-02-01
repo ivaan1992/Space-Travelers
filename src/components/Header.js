@@ -9,13 +9,13 @@ const Header = () => (
           <h1 className='header-title'>Space Travelers' Hub</h1>
         </li> 
         <li>
+          <Link to="/">Rockets</Link>
+        </li>
+        <li>
           <Link to="/Missions">Missions</Link>
         </li>
         <li>
           <Link to="/Profile">Profile</Link>
-        </li>
-        <li>
-          <Link to="/">Rockets</Link>
         </li>
       </ul>
     </nav>
