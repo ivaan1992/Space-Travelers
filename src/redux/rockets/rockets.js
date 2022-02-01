@@ -1,4 +1,4 @@
-const GET_ROCKETS_SUCCESS = 'spaceTravelers/rockets/GET_ROCKETS_SUCCESS';
+/*const GET_ROCKETS_SUCCESS = 'spaceTravelers/rockets/GET_ROCKETS_SUCCESS';
 const REGISTER_ROCKET = 'spaceTravelers/rockets/REGISTER_ROCKET';
 const CANCEL_REGISTER = 'spaceTravelers/rockets/CANCEL_REGISTER';
 
@@ -67,4 +67,4 @@ export {
 };
 
 
-
+*/
