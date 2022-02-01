@@ -6,8 +6,8 @@ const Header = () => (
     <nav>
       <ul className="logo">
         <li>
-          <h1 className='header-title'>Space Travelers' Hub</h1>
-        </li> 
+          <h1 className="header-title">Space Travelers&apos; Hub</h1>
+        </li>
         <li>
           <Link to="/">Rockets</Link>
         </li>

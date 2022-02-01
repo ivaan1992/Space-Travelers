@@ -5,22 +5,3 @@
   display: flex;
   justify-content: space-evenly;
 }
-
-<<<<<<< HEAD
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-=======
-li {
-  list-style-type: none;
->>>>>>> cc39480 (Add logo and links to the header section)
-}
