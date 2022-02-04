@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Gallery from '../Gallery';
 
 const rocketList = () => {
   const [rockets, setRockets] = useState([]);
@@ -15,8 +16,14 @@ const rocketList = () => {
     <div>
       {
         rockets.map((rocket) => (
+
           <div key={rocket.id}>
-            {rocket.rocket_name}
+            <div>
+              <Gallery images={rocket.flickr_images} name={rocket.rocket_name} />
+            </div>
+            <p>{rocket.rocket_name}</p>
+            <p>{rocket.description}</p>
+
           </div>
         ))
       }

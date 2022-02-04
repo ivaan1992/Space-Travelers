@@ -1,38 +1,38 @@
+import rocketList from '../../components/rockets/Rockets';
+
 const GET_ROCKETS_SUCCESS = 'spaceTravelers/rockets/GET_ROCKETS_SUCCESS';
 const REGISTER_ROCKET = 'spaceTravelers/rockets/REGISTER_ROCKET';
 const CANCEL_REGISTER = 'spaceTravelers/rockets/CANCEL_REGISTER';
 
 const initialState = [];
 
-const getList = () => async (dispatch) => {
-  const response = await fetch('https://api.spacexdata.com/v3/rockets');
-  const rockets = await response.json();
-  const newList = [];
+export const getRocketSuccess = (payload) => ({
+  type: GET_ROCKETS_SUCCESS,
+  payload,
+});
 
-  rockets.forEach((rocket) => {
-    const rocketDetails = {
+export const registerRocket = (payload) => ({
+  type: REGISTER_ROCKET,
+  payload,
+});
+
+export const cancelRegister = (payload) => ({
+  type: CANCEL_REGISTER,
+  payload,
+});
+
+export const getRockets = () => (dispach) => {
+  rocketList().then((data) => {
+    const rockets = data.map((rocket) => ({
       id: rocket.id,
-      name: rocket.rocket_name,
-      image: rocket.flickr_images[0],
+      image: rocket.image,
+      name: rocket.active,
       description: rocket.description,
-    };
-    newList.push(rocketDetails);
-  });
-  dispatch({
-    type: GET_ROCKETS_SUCCESS,
-    payload: newList,
+      reserved: false,
+    }));
+    dispach(GET_ROCKETS_SUCCESS(rockets));
   });
 };
-
-const registerRocket = (id) => ({
-  type: REGISTER_ROCKET,
-  id,
-});
-
-const cancelRegister = (id) => ({
-  type: CANCEL_REGISTER,
-  id,
-});
 
 const rocketsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -58,10 +58,4 @@ const rocketsReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-export {
-  rocketsReducer as default,
-  getList,
-  registerRocket,
-  cancelRegister,
-};
+export default rocketsReducer;

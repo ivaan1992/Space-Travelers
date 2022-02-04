@@ -1,0 +1,39 @@
+.gallery {
+    display: flex;
+    position: relative;
+    height: 10rem;
+    width: 10rem;
+}
+
+.gallery .btn {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+
+    width: 2rem;
+    height: 2rem;
+    background-color: rgba(53, 139, 219, .5);
+    border-radius: 1000rem;
+    cursor: pointer;
+    user-select: none;
+    font-size: 1rem;
+    color: white;
+
+    top: 4rem;
+
+}
+
+.gallery .left {
+    left: .5rem;
+}
+
+.gallery .rigth {
+    right: .5rem;
+}
+
+.gallery img {
+    width: 100%;
+
+}
