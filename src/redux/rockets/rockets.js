@@ -1,67 +1,42 @@
-const GET_ROCKETS_SUCCESS = 'spaceTravelers/rockets/GET_ROCKETS_SUCCESS';
-const REGISTER_ROCKET = 'spaceTravelers/rockets/REGISTER_ROCKET';
-const CANCEL_REGISTER = 'spaceTravelers/rockets/CANCEL_REGISTER';
+import fetchRockets from '../../apiServices/getRocketApi';
 
-const initialState = [];
+const ROCKET = 'redux/actions/get_rockets';
+const RESERVE_ROCKET = 'redux/actions/reserve_rockets';
 
-const getList = () => async (dispatch) => {
-  const response = await fetch('https://api.spacexdata.com/v3/rockets');
-  const rockets = await response.json();
-  const newList = [];
+const getRocketsAction = (rockets) => ({
+  type: ROCKET,
+  payload: rockets,
+});
 
-  rockets.forEach((rocket) => {
-    const rocketDetails = {
+export const reserveRocketAction = (rocketID) => ({
+  type: RESERVE_ROCKET,
+  payload: rocketID,
+});
+
+export const getRockets = () => (dispach) => {
+  fetchRockets().then((data) => {
+    const rockets = data.map((rocket) => ({
       id: rocket.id,
       name: rocket.rocket_name,
-      image: rocket.flickr_images[0],
       description: rocket.description,
-    };
-    newList.push(rocketDetails);
-  });
-  dispatch({
-    type: GET_ROCKETS_SUCCESS,
-    payload: newList,
+      image: rocket.flickr_images[0],
+      urlWiki: rocket.wikipedia,
+      reserved: false,
+    }));
+    dispach(getRocketsAction(rockets));
   });
 };
 
-const registerRocket = (id) => ({
-  type: REGISTER_ROCKET,
-  id,
-});
-
-const cancelRegister = (id) => ({
-  type: CANCEL_REGISTER,
-  id,
-});
-
-const rocketsReducer = (state = initialState, action) => {
+const rocketsReducer = (state = [], action) => {
   switch (action.type) {
-    case GET_ROCKETS_SUCCESS:
-      return [...action.payload];
-
-    case REGISTER_ROCKET:
-      return state.map((rocket) => {
-        if (rocket.id !== action.id) {
-          return rocket;
-        }
-        return { ...rocket, reserved: true };
-      });
-
-    case CANCEL_REGISTER:
-      return state.map((rocket) => {
-        if (rocket.id !== action.id) {
-          return rocket;
-        }
-        return { ...rocket, reserved: false };
-      });
+    case ROCKET:
+      return action.payload;
+    case RESERVE_ROCKET:
+      return state.map((rocket) => (rocket.id === action.payload
+        ? { ...rocket, reserved: !rocket.reserved } : { ...rocket }));
     default:
       return state;
   }
 };
 
-export {
-  rocketsReducer as default,
-  getList,
-  registerRocket,
-  cancelRegister,
-};
+export default rocketsReducer;
