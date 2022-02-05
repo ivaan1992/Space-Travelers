@@ -1,0 +1,7 @@
+.logo {
+  background-image: url(./images/3212567.png);
+  background-repeat: no-repeat;
+  background-size: 60px;
+  display: flex;
+  justify-content: space-evenly;
+}
