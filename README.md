@@ -8,8 +8,7 @@ The application will allow users to book rockets and join selected space mission
 
 
 ## Screenshot
-
-
+![rockets.png](./src/images/rockets.png)
 ## Built With
 
 - Html
@@ -46,9 +45,9 @@ You may also see any lint errors in the console.
 
 👤 **Oliver Coimbra**
 
-GitHub: @olivercoimbra
-Twitter: @olivercoimbra
-LinkedIn: LinkedIn
+- GitHub: [@olivercoimbra](https://github.com/oliverSCZ)
+- Twitter: [@olivercoimbra](https://twitter.com/olivercoimbra)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/oliver-coimbra/)
 
 ## Show your support
 
