@@ -1,27 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getRockets } from '../../redux/rockets/rockets';
+import Profile from '../profile/Profile';
+import Rocket from './Rocket';
+import './rockets.css';
 
-const rocketList = () => {
-  const [rockets, setRockets] = useState([]);
+let loadFirstTime = false;
 
+const Rockets = () => {
+  const dispatch = useDispatch();
+  const rockets = useSelector((state) => state.rocketsReducer);
   useEffect(() => {
-    fetch('https://api.spacexdata.com/v3/rockets')
-      .then((res) => res.json())
-      .then((response) => {
-        console.log(response);
-        setRockets(response);
-      });
-  }, []);
+    if (!loadFirstTime) {
+      dispatch(getRockets());
+      loadFirstTime = true;
+    }
+  }, [dispatch]);
+
+  Profile();
+
   return (
-    <div>
-      {
-        rockets.map((rocket) => (
-          <div key={rocket.id}>
-            {rocket.rocket_name}
-          </div>
-        ))
-      }
-    </div>
+    <ul className="Rockets">
+      {rockets.map(({
+        image, name, description, id, reserved,
+      }) => (
+        <Rocket
+          id={id}
+          key={id}
+          image={image}
+          name={name}
+          description={description}
+          reserved={reserved}
+        />
+      ))}
+    </ul>
   );
 };
 
-export default rocketList;
+export default Rockets;
